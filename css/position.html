@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Position</title>
+    <style>
+        div {
+            font-size: 60px;
+            padding: 30px;
+            border: solid 5px #222;
+        }
+
+        .static {
+            /* É a position padrão. Não considera alinhamentos manuais (top, right, bottom, left) */
+            top: 100px;
+            left: 100px;
+            background-color: steelblue;
+        }
+
+        .fixed {
+            /* Considera alinhamentos manuais. Fica sempre fixo no viewport, tipo linhas congeladas do Excel */
+            position: fixed;
+            bottom: 30px;
+            right: 0px;
+            background-color: tomato;
+        }
+
+        .relative1 {
+            /* Alinha-se conforme instruções manuais, baseado na posição do elemento anterior */
+            /* Passa por cima do Fixed, caso esteja declarado depois dele no html */
+            position: relative;
+            left: 50px;
+            top: 5px;
+            background-color: seagreen;
+        }
+
+        .absolute1 {
+            /* Posiciona-se absolutamente na página, de acordo com o alinhamento manual.
+            Seu posicionamento é em relação ao HTML como um todo, e não só com relação ao viewport, como o Fixed */
+            position: absolute;
+            left: 350px;
+            top: 120px;
+            background-color: violet;
+        }
+
+        .relative2 {
+            position: relative;
+            left: 250px;
+            top: 2000px;
+            width: 200px;
+            height: 200px;
+            background-color: slategray;
+        }
+
+        .absolute2 {
+            /* Muda seu comportamento dependendo da position da tag pai 
+            Se for relative, fixed ou absolute, toma as referências da tag pai.
+            Se for static, ignora a tag pai e vai para a superior*/
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: orange;
+        }
+
+        .sticky {
+            /* A tag desliza normalmente pela página até atingir a posição indicada
+            de forma manual (top, bottom, left, right). Então, cola-se nesta posição
+            e não sai mais até que seja revertido o movimento de deslizar a página */
+            position: -webkit-sticky; /* Por causa do Safari */
+            position: sticky;
+            background-color: #777;
+            top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="static">Static (Padrão)</div>
+    <div class="fixed">Fixed</div>
+    <div class="relative1">Relative</div>
+    <div class="absolute1">Absolute</div>
+
+    <div class="relative2">
+        <div class="absolute2"></div>
+    </div>
+
+    <div class="sticky">Sticky</div>
+    <p style="padding-bottom: 2000px;">Opa</p>
+</body>
+
+</html>

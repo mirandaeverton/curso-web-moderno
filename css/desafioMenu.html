@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio Menu</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0px;
+            background: #CCC;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .cabecalho {
+            background-color: #555;
+            height: 80px;
+            border-bottom: solid 5px steelblue;
+            box-sizing: content-box;
+        }
+
+        .logo {
+            display: inline-block;
+            padding: 15px;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 100%;
+        }
+        
+        .menu-toggle {
+            float: right;
+            color: #eee;
+            background-color: #555;
+            border: solid 1px #777;
+            border-radius: 5px;
+            height: 40px;
+            padding: 10px 20px;
+            margin: 20px 15px;
+            display: none;
+        }
+
+        .menu {
+            display: inline-block;
+            vertical-align: top;
+            height: 80px;
+            padding: 25px;
+        }
+
+        .menu ul {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .menu li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .menu a:hover {
+            background-color: steelblue;
+            color: #333;
+        }
+
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            font-size: 1.3em;
+        }
+
+
+        .autenticacao {
+            float: right;
+            height: 80px;
+            padding: 25px;
+        }
+
+        .autenticacao a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3em;
+        }
+
+        .botao {
+            padding: 10px 25px;
+            margin-left: 15px;
+            border-radius: 50px;
+            text-align: center;
+        }
+
+        .destaque {
+            background: rgb(255, 71, 71);
+        }
+
+        .destaque:active {
+           box-shadow: -2px -2px 1px 1px #000;
+        }
+
+        @media (max-width: 942px) {
+            .autenticacao {
+                display: none;
+            }
+        }
+
+        @media (max-width: 713px) {
+            .menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <a href="#inicio">
+                <img src="http://files.cod3r.com.br/curso-web/logo.png" alt="Logo" />
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fa fa-lg fa-bars"></i>
+        </button>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+                <li>
+                    <a href="#cursos">Cursos</a>
+                </li>
+                <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="autenticacao">
+            <a href="#login">Login</a>
+            <a href="#registar" class="botao destaque">Registrar</a>
+        </aside>
+    </header>
+
+    <script>
+        window.addEventListener('hashchange', function () {
+            const hash = new URL(document.URL).hash
+            let botao
+            switch (hash) {
+                case '#inicio':
+                    alteraCorBotao(1)
+                    break
+                case '#cursos':
+                    alteraCorBotao(2)
+                    break
+                case '#sobre':
+                    alteraCorBotao(3)
+                    break
+                case '#contato':
+                    alteraCorBotao(4)
+                default:
+
+            }
+        })
+        function alteraCorBotao(numeroBotao) {
+            let botao
+            for (let i = 1; i <= 4; i++) {
+                if (i === numeroBotao) {
+                    botao = document.querySelector(`li:nth-child(${i}) a`)
+                    botao.style.color = '#333'
+                    botao.style.background = 'steelblue'
+                } else {
+                    botao = document.querySelector(`li:nth-child(${i}) a`)
+                    botao.style.color = '#FFF'
+                    botao.style.background = '#555'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

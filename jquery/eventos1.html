@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Eventos #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+    <style>
+        input {
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Eventos #01</h1>
+    <div id='posicao'></div>
+    <div id='cliques'>Cliques: 0</div>
+    <input type="text" placeholder="Cor de Background">
+
+    <script>
+        function showMousePosition(e) {
+            $('#posicao').html(`x: ${e.clientX} y: ${e.clientY}`)
+        }
+
+        // Função on(): Registrar evento
+        $('body').on('mousemove', showMousePosition)
+        
+        // Função off(): Desregistrar evento + // Registrar evento direto no elemento
+        $('#posicao').mouseover(e => {
+            $('body').off('mousemove', showMousePosition)
+
+        })
+
+        $('#posicao').mouseleave(e => {
+            $('body').on('mousemove', showMousePosition)
+
+        })
+
+        // Evento de cliques
+        let clicks = 0
+        $('body').click(e => {
+            $('#cliques').html(`Cliques: ${++clicks}`)
+        })
+
+        // Evento de teclado
+        const originalBackground = $('body').css('background-color')
+        // Teve de ser p keyup, pois informa a string mais atualizada conforme se digita
+        $('input').keyup(function (e) { // Tem de ser uma function normal, por causa do this
+            const valor = $(this).val()
+            if(valor.match(/#[\da-fA-F]{3,6}/)) {
+                $('body').css('background-color', valor)
+            } else {
+                $('body').css('background-color', originalBackground)
+
+            }
+        })
+
+
+        </script>
+</body>

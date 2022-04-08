@@ -1,0 +1,74 @@
+<h1>Imagens</h1>
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" alt="Muro da Cdade" width="513" height="342"
+            title="Muro da Cidade por ">
+    </p>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" alt="Coisa linda" height="342">
+    </p>
+
+    <p class="background1">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="Rio de Janeiro" height="342">
+    </p>
+
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="Avatar" height="50" align="left">
+        iszfgaskljfrubfpaisfbnighaskljdfhaçsldfkjasçdfhsdhjAFJKHçadkASKDHa
+        sdASJDahsofHAÇSLDJSÇLDKHasldjkgAÇSLDJSÇDGJKs
+        ASDansçdjkbASÇDKLJaºsopdSJashOAUDFGPDAHKLÇAS.DKJFAHOPJAS~DFA
+    </p>
+
+    <p class="cidade"></p>
+
+    <!-- <picture>
+        <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" media="(min-width: 600px">
+        <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+    </picture> -->
+</div>
+
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .background1 {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto {
+        margin-right: 10px;
+    }
+
+    .cidade {
+        width: 513px;
+        height: 342px;
+        background-image: url(http://files.cod3r.com.br/curso-web/imagem4.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<script>
+    const elementos = document.querySelectorAll('[wm-slider] > p')
+    const slides = Array.from(elementos)
+    slides.forEach(img => {
+        img.style.left = '1000px'
+        img.style.display = 'inline'
+        let i = 1000
+        let largura = img.querySelector('img').getAttribute('width')
+        const time = setInterval(() => {
+            if (i <= -largura) {
+                img.style.display = 'none'
+                clearInterval(time)
+            }
+            img.style.left = `${i}px`
+            console.log(img.style.left)
+            i -= 10
+        }, 50);
+    })
+</script>

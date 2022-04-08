@@ -1,0 +1,56 @@
+<h1>Vídeo</h1>
+
+<video id="meuVideo" width="800" height="450" controls controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser nãosuportaa tag de vídeo.
+</video>
+
+<div wm-progresso="meuVideo" class="progresso">
+    <div id="progress"></div>
+</div>
+
+<div>
+    <button wm-play="meuVideo" onclick="playVideo()">Play</button>
+    <button wm-pause="meuVideo" onclick="pauseVideo()">Pause</button>
+</div>
+
+<style>
+    .progresso {
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px;
+    }
+
+    .progresso>div {
+        background-color: red;
+        color: #fff;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0%;
+    }
+</style>
+
+<script>
+    const video = document.querySelector('video')
+
+    function playVideo() {
+        video.play()
+        evoluirBarraProgresso()
+    }
+
+    function pauseVideo() {
+        video.pause()
+    }
+
+    function evoluirBarraProgresso() {
+        setInterval(function () {
+            const barraProgresso = document.querySelector('[wm-progresso=meuVideo] > div') //document.getElementById('progress')
+            let progresso = Math.round((video.currentTime / video.duration) * 100)
+            console.log(barraProgresso)
+            barraProgresso.style.width = `${progresso}%`
+            barraProgresso.innerHTML = `${progresso}% ` //video.currentTime + 's'
+        })
+    }
+</script>

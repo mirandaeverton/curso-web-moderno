@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Fetch API #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input,
+        form select,
+        form button {
+            margin: 10px;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Formulário Via Fetch</h1>
+    <form name="usuarioForm" action="formulario" method="post">
+        <input type="text" name="nome" placeholder="Nome..." />
+        <input type="text" name="sobrenome" placeholder="Sobrenome..." />
+        <button>Salvar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        document.usuarioForm.onsubmit = async e => {
+            e.preventDefault()
+
+            const form = e.target
+            data.append('ajax', true) 
+            //Somente para demonstrar que é possível adicionar/remover informções do objeto recebido
+            const data = new FormData(form)
+
+            const options = {
+                method: form.method,
+                body: new URLSearchParams(data)
+            }
+            const resultado = document.getElementById('resultado')
+
+            /* VERSÃO COM FETCH NORMAL*/
+            // fetch(form.action, options)
+            //     .then(resp => resp.json()) // Com Fetch sempre tem de transformar em JSON
+            //     .then(json => {
+            //         resultado.innerHTML = JSON.stringify(json)
+            //     })
+            //     .catch(e => { resultado.innerHTML = e})
+
+            /* VERSÃO COM ASYNC AWAIT*/
+            try {
+                // Se for utilizado await, o fetch não retorna uma promise como resposta, mas sim os dados corretos
+                const resp = await fetch(form.action, options) 
+                const json = await resp.json()
+                resultado.innerHTML = JSON.stringify(json)
+            } catch (e) {
+                resultado.innerHTML = e
+            }
+
+        }
+
+    </script>
+</body>

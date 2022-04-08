@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Eventos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+    <style>
+        input {
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Eventos #02</h1>
+    <div id='div1'>1</div>
+    <div id="resultado1">?</div>
+    <br>
+    <input type="text" placeholder="Digite e Selecione">
+    <div id="resultado2">?</div>
+    <script>
+        // Evento hover aceita 2 funções: uma para quando o mouse entra no elemento e outra pra quando sai
+        // Se houver só uma função callback, ele chama ela para entrar e sair
+        const alternarDestaque = () => $('#div1').toggleClass('destaque')
+        $('#div1').hover(alternarDestaque)
+        // O código acima poderia ser escrito da seguinte forma:
+        // const aplicarDestaque = () => $('#div1').addClass('destaque')
+        // const removerDestaque = () => $('#div1').removeClass('destaque')
+        // $('#div1').hover(aplicarDestaque, removerDestaque)
+        // O evento hover também pode ser substituído pelo seguinte
+        // $('#div1').on('mouseenter mouseleave', alternarDestaque)
+
+        // Este comando trata o evento apenas da primeira vez que a página carrega
+        $('#div1').one('mouseenter', e => alert('IMPORTANTE: Deu boa!!!'))
+        
+        // Evento para clique duplo no elemento
+        $('#div1').dblclick(e => $('#div1').fadeOut(1000).fadeIn(1000))
+
+        // Evento para monitorizar o redimensionamento da janela
+        $(window).resize(function(e) {
+            const largura = $(window).width()
+            const altura = $(window).height()
+            $('#resultado1').html(`Largura: ${largura} e Altura: ${altura}`)
+        })
+
+        // Evento para tratar a seleção de um texto
+        $(':input').select(e => {
+            const inicio = e.target.selectionStart
+            const fim = e.target.selecionEnd
+            $('#resultado2').html(e.target.value.substring(inicio, fim))
+        })
+    </script>
+</body>

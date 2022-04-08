@@ -1,0 +1,44 @@
+ <h1>Projeto</h1>
+ <ul class="tree">
+     <li><a href="" id="backendList">backend</a>
+         <ul id="backend">
+             <li><a href="" id="appList">app</a>
+                 <ul id="app">
+                     <li>produto.js</li>
+                     <li>usuario.js</li>
+                     <li>venda.js</li>
+                 </ul>
+             </li>
+             <li><a href="" id="configList">config</a>
+                 <ul id="config">
+                     <li>banco.js</li>
+                     <li>rotas.js</li>
+                     <li>servidor.js</li>
+                 </ul>
+             </li>        
+        </ul>
+     </li>
+     <li><a href="" id="frontendList">frontend</a>
+         <ul id="frontend">
+             <li><a href="" id="publicList">public</a>
+                 <ul id="public">
+                     <li>app.css</li>
+                     <li>app.js</li>
+                     <li>index.html</li>
+                 </ul>
+             </li>
+         </ul>
+     </li>
+ </ul>
+
+ <link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+ <script>
+     document.querySelectorAll('a').forEach(link => {
+        const id = link.text
+        const lista = document.getElementById(id)
+        link.onclick = function(e) {
+            e.preventDefault()
+            lista.toggleAttribute("hidden")
+        }
+    })
+    </script>

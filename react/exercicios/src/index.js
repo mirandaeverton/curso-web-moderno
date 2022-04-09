@@ -15,9 +15,30 @@ import ReactDOM from 'react-dom'
 //     document.getElementById('root'))
 
 // Class components
-import Saudacao from './components/Saudacao'
+// import Saudacao from './components/Saudacao'
 
-ReactDOM.render(<div>
-    <Saudacao nome="João" tipo="E aí" />
-</div>
-, document.getElementById('root'))
+// ReactDOM.render(<div>
+//     <Saudacao nome="João" tipo="E aí" />
+// </div>
+// , document.getElementById('root'))
+
+// Parent and children - Versão engessada
+// import Pai from "./components/Pai"
+// ReactDOM.render(
+//     <div>
+//         <Pai nome="Sidnei" sobrenome="Miranda" />
+//     </div>
+//     , document.getElementById('root'))
+
+// Parent and children -Versão mais versátil
+import Pai from "./components/Pai"
+import Filho from "./components/Filho"
+ReactDOM.render(
+    <div>
+        <Pai nome="Sidnei" sobrenome="Miranda">
+            <Filho nome="Pedro" />
+            <Filho nome="Emily" />
+            <Filho nome="Samuel" />
+        </Pai>
+    </div>
+    , document.getElementById('root'))

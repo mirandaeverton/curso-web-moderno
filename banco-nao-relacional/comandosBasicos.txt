@@ -1,0 +1,28 @@
+// This is a caseSensitive database
+
+help
+cls
+show dbs
+use wm
+show dbs
+db.createCollection('estados')
+show dbs
+show collections
+db.createCollection('Estados')
+show collections
+db.Estados.drop()
+show collections
+db.estados.drop()
+show collections
+show dbs
+
+use db-name
+
+db.createCollection('collectionName')
+
+db.collectionName.drop()
+db.collectionName.insert({object like information})
+db.collectionName.save({object like information})
+db.collectionName.find()
+db.collectionName.find().pretty()
+db.collectionName.remove()
